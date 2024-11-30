@@ -1,0 +1,14 @@
+{
+    "name": "bit_utils",
+    "version": "0.0.0",
+    "repo": "goodcleanfun/bit_utils",
+    "description": "Cross platform builtin bit operations (popcount, ctz, clz)",
+    "keywords": [],
+    "license": "MIT",
+    "development": {
+      "silentbicycle/greatest": "*"
+    },
+    "src": [
+      "src/bit_utils.h"
+    ]
+  }
