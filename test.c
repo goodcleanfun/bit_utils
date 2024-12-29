@@ -11,17 +11,17 @@ TEST test_bit_utils(void) {
     ASSERT_EQ(clz(1), 31);
     ASSERT_EQ(clz(0x80000000), 0);
 
-    ASSERT_EQ(clzll(0), 64);
-    ASSERT_EQ(clzll(1), 63);
-    ASSERT_EQ(clzll(0x8000000000000000), 0);
+    ASSERT_EQ(clz(0ull), 64);
+    ASSERT_EQ(clz(1ull), 63);
+    ASSERT_EQ(clz(0x8000000000000000), 0);
 
     ASSERT_EQ(ctz(0), 32);
     ASSERT_EQ(ctz(1), 0);
     ASSERT_EQ(ctz(0x80000000), 31);
 
-    ASSERT_EQ(ctzll(0), 64);
-    ASSERT_EQ(ctzll(1), 0);
-    ASSERT_EQ(ctzll(0x8000000000000000), 63);
+    ASSERT_EQ(ctz(0ull), 64);
+    ASSERT_EQ(ctz(1ull), 0);
+    ASSERT_EQ(ctz(0x8000000000000000), 63);
 
     PASS();
 }
