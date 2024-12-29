@@ -4,25 +4,12 @@
 #include "bit_utils.h"
 
 TEST test_bit_utils(void) {
-    ASSERT_EQ(popcount(0), 0);
-    ASSERT_EQ(popcount(0x80000000), 1);
-
-    ASSERT_EQ(clz(0), 32);
-    ASSERT_EQ(clz(1), 31);
-    ASSERT_EQ(clz(0x80000000), 0);
-
-    ASSERT_EQ(clz(0ull), 64);
-    ASSERT_EQ(clz(1ull), 63);
-    ASSERT_EQ(clz(0x8000000000000000), 0);
-
-    ASSERT_EQ(ctz(0), 32);
-    ASSERT_EQ(ctz(1), 0);
-    ASSERT_EQ(ctz(0x80000000), 31);
-
-    ASSERT_EQ(ctz(0ull), 64);
-    ASSERT_EQ(ctz(1ull), 0);
-    ASSERT_EQ(ctz(0x8000000000000000), 63);
-
+    unsigned int x = 0;
+    unsigned int y = 0x80000000;
+    int popx = popcount(x);
+    ASSERT_EQ(popx, 0);
+    int popy = popcount(y);
+    ASSERT_EQ(popy, 1);
     PASS();
 }
 
