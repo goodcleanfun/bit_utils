@@ -8,6 +8,11 @@
 #define __builtin_popcount __popcnt
 #define __builtin_popcountll __popcnt64
 
+static inline int __builtin_popcountl(unsigned long x)
+{
+    return sizeof(x) == 8 ? __popcnt64(x) : __popcnt((unsigned)x);
+}
+
 static inline int __builtin_ctz(unsigned x)
 {
     return (int)_tzcnt_u32(x);
