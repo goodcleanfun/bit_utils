@@ -1,7 +1,9 @@
 
-test:
+install:
 	clib install --dev
-	@$(CC) test.c -std=c99 -I src -I deps -o $@
+
+test:
+	@$(CC) test.c -I src -I deps -I deps/greatest -o $@
 	@./$@
 
-.PHONY: test
+.PHONY: install test
