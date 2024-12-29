@@ -47,50 +47,31 @@ static inline int __builtin_clzl(unsigned long x)
 }
 #endif // defined(_MSC_VER) && !defined(__clang__)
 
+#define clz(x) _Generic((x) \
+    , unsigned: __builtin_clz \
+    , int: __builtin_clz \
+    , unsigned long: __builtin_clzl \
+    , long: __builtin_clzl \
+    , unsigned long long: __builtin_clzll \
+    , long long: __builtin_clzll \
+    )(x)
 
-static inline int clz(unsigned x)
-{
-    return x ? __builtin_clz(x) : 32;
-}
+#define ctz(x) _Generic((x) \
+    , unsigned: __builtin_ctz \
+    , int: __builtin_ctz \
+    , unsigned long: __builtin_ctzl \
+    , long: __builtin_ctzl \
+    , unsigned long long: __builtin_ctzll \
+    , long long: __builtin_ctzll \
+    )(x)
 
-static inline int clzl(unsigned long x)
-{
-    return x ? __builtin_clzl(x) : 32;
-}
-
-static inline int clzll(unsigned long long x)
-{
-    return x ? __builtin_clzll(x) : 64;
-}
-
-static inline int ctz(unsigned x)
-{
-    return x ? __builtin_ctz(x) : 32;
-}
-
-static inline int ctzl(unsigned long x)
-{
-    return x ? __builtin_ctzl(x) : 32;
-}
-
-static inline int ctzll(unsigned long long x)
-{
-    return x ? __builtin_ctzll(x) : 64;
-}
-
-static inline int popcount(unsigned x)
-{
-    return __builtin_popcount(x);
-}
-
-static inline int popcountl(unsigned long x)
-{
-    return __builtin_popcount(x);
-}
-
-static inline int popcountll(unsigned long long x)
-{ 
-    return __builtin_popcountll(x);
-}
+#define popcount(x) _Generic((x) \
+    , unsigned: __builtin_popcount \
+    , int: __builtin_popcount \
+    , unsigned long: __builtin_popcountl \
+    , long: __builtin_popcountl \
+    , unsigned long long: __builtin_popcountll \
+    , long long: __builtin_popcountll \
+    )(x)
 
 #endif // BIT_UTILS_H
