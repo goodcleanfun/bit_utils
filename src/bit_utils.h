@@ -8,12 +8,16 @@
 #define __builtin_popcount __popcnt
 #define __builtin_popcountll __popcnt64
 
-static int __builtin_ctz(unsigned x)
+#ifndef NO_INLINE
+#define NO_INLINE __declspec(noinline)
+#endif
+
+NO_INLINE static int __builtin_ctz(unsigned x)
 {
     return (int)_tzcnt_u32(x);
 }
 
-static int __builtin_ctzll(unsigned long long x)
+NO_INLINE static int __builtin_ctzll(unsigned long long x)
 {
 #ifdef _WIN64
     return (int)_tzcnt_u64(x);
@@ -22,17 +26,17 @@ static int __builtin_ctzll(unsigned long long x)
 #endif
 }
 
-static int __builtin_ctzl(unsigned long x)
+NO_INLINE static int __builtin_ctzl(unsigned long x)
 {
     return sizeof(x) == 8 ? __builtin_ctzll(x) : __builtin_ctz((unsigned)x);
 }
 
-static int __builtin_clz(unsigned x)
+NO_INLINE static int __builtin_clz(unsigned x)
 {
     return (int)_lzcnt_u32(x);
 }
 
-static int __builtin_clzll(unsigned long long x)
+NO_INLINE static int __builtin_clzll(unsigned long long x)
 {
 #ifdef _WIN64
     return (int)_lzcnt_u64(x);
@@ -41,7 +45,7 @@ static int __builtin_clzll(unsigned long long x)
 #endif
 }
 
-static int __builtin_clzl(unsigned long x)
+NO_INLINE static int __builtin_clzl(unsigned long x)
 {
     return sizeof(x) == 8 ? __builtin_clzll(x) : __builtin_clz((unsigned)x);
 }
