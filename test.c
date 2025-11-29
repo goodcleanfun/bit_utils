@@ -38,7 +38,7 @@ TEST test_bit_utils(void) {
     printf("clz(1 - 1) = %u\n", clz(1 - 1));
     printf("clz(1) = %u\n", clz(1));
     printf("ceil_log2(1) = %u\n", ceil_log2(1));
-    ASSERT_EQ(ceil_log2(1), 1);
+    ASSERT_EQ(ceil_log2(1), 0);
     ASSERT_EQ(ceil_log2(0x80000000), 31);
 
     ASSERT_EQ(ceil_log2(0ULL), 0);
