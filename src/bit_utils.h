@@ -85,7 +85,7 @@ static inline uint64_t u64_floor_log2(uint64_t x) {
 }
 
 static inline uint64_t u64_ceil_log2(uint64_t x) {
-    return x == 0 ? 0 : 64 - clz(x - 1);
+    return x == 0 ? 0 : 64 - clz(x - 1ULL);
 }
 
 // Smallest power of 2 not less than x
