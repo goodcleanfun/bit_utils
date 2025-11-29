@@ -85,7 +85,7 @@ static inline uint64_t u64_floor_log2(uint64_t x) {
 }
 
 static inline uint64_t u64_ceil_log2(uint64_t x) {
-    return x == 0 ? 0 : 64 - clz(x - 1ULL);
+    return x == 0ULL || x == 1ULL ? 0 : 64 - clz(x - 1ULL);
 }
 
 // Smallest power of 2 not less than x
@@ -103,7 +103,7 @@ static inline uint32_t u32_floor_log2(uint32_t x) {
 }
 
 static inline uint32_t u32_ceil_log2(uint32_t x) {
-    return x == 0 ? 0 : 32 - clz(x - 1);
+    return x == 0 || x == 1 ? 0 : 32 - clz(x - 1);
 }
 
 static inline uint32_t u32_hyper_ceil(uint32_t x) {
