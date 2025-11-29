@@ -79,4 +79,76 @@ static inline int __builtin_clzl(unsigned long x)
     , long long: __builtin_popcountll \
     )(x)
 
+
+static inline uint64_t u64_floor_log2(uint64_t x) {
+    return x == 0 ? 0 : 63 - clz(x);
+}
+
+static inline uint64_t u64_ceil_log2(uint64_t x) {
+    return x == 0 ? 0 : 64 - clz(x - 1);
+}
+
+// Smallest power of 2 not less than x
+static inline uint64_t u64_hyper_ceil(uint64_t x) {
+    return (1ULL << u64_ceil_log2(x));
+}
+
+static inline uint64_t u64_ceil_div(uint64_t x, uint64_t y) {
+    if (y == 0 || x == 0) return 0; // Avoid division by zero
+    return (1ULL + ((x - 1ULL) / y));
+}
+
+static inline uint32_t u32_floor_log2(uint32_t x) {
+    return x == 0 ? 0 : 31 - clz(x);
+}
+
+static inline uint32_t u32_ceil_log2(uint32_t x) {
+    return x == 0 ? 0 : 32 - clz(x - 1);
+}
+
+static inline uint32_t u32_hyper_ceil(uint32_t x) {
+    return (1 << u32_ceil_log2(x));
+}
+
+static inline uint32_t u32_ceil_div(uint32_t x, uint32_t y) {
+    if (y == 0 || x == 0) return 0; // Avoid division by zero
+    return (1 + ((x - 1) / y));
+}
+
+#define floor_log2(x) _Generic((x) \
+    , unsigned: u32_floor_log2 \
+    , int: u32_floor_log2 \
+    , unsigned long: u32_floor_log2 \
+    , long: u32_floor_log2 \
+    , unsigned long long: u64_floor_log2 \
+    , long long: u64_floor_log2 \
+    )(x)
+
+#define ceil_log2(x) _Generic((x) \
+    , unsigned: u32_ceil_log2 \
+    , int: u32_ceil_log2 \
+    , unsigned long: u32_ceil_log2 \
+    , long: u32_ceil_log2 \
+    , unsigned long long: u64_ceil_log2 \
+    , long long: u64_ceil_log2 \
+    )(x)
+
+#define hyper_ceil(x) _Generic((x) \
+    , unsigned: u32_hyper_ceil \
+    , int: u32_hyper_ceil \
+    , unsigned long: u32_hyper_ceil \
+    , long: u32_hyper_ceil \
+    , unsigned long long: u64_hyper_ceil \
+    , long long: u64_hyper_ceil \
+    )(x)
+
+#define ceil_div(x, y) _Generic((x, y) \
+    , unsigned: u32_ceil_div \
+    , int: u32_ceil_div \
+    , unsigned long: u32_ceil_div \
+    , long: u32_ceil_div \
+    , unsigned long long: u64_ceil_div \
+    , long long: u64_ceil_div \
+    )(x, y)
+
 #endif // BIT_UTILS_H
