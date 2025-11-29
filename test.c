@@ -32,6 +32,7 @@ TEST test_bit_utils(void) {
     ASSERT_EQ(floor_log2(0x8000000000000000ULL), 63);
 
     ASSERT_EQ(ceil_log2(0), 0);
+    printf("ceil_log2(1) = %u\n", ceil_log2(1));
     ASSERT_EQ(ceil_log2(1), 0);
     ASSERT_EQ(ceil_log2(0x80000000), 31);
 
