@@ -151,4 +151,51 @@ static inline uint32_t u32_ceil_div(uint32_t x, uint32_t y) {
     , long long: u64_ceil_div \
     )(x, y)
 
+
+static inline bool i8_is_power_of_two(int8_t x) {
+    return x > 0 && ((x & (x - 1)) == 0);
+}
+
+static inline bool u8_is_power_of_two(uint8_t x) {
+    return x && ((x & (x - 1)) == 0);
+}
+
+static inline bool i16_is_power_of_two(int16_t x) {
+    return x > 0 && ((x & (x - 1)) == 0);
+}
+
+static inline bool u16_is_power_of_two(uint16_t x) {
+    return x && ((x & (x - 1)) == 0);
+}
+
+static inline bool i32_is_power_of_two(int32_t x) {
+    return x > 0 && ((x & (x - 1)) == 0);
+}
+
+static inline bool u32_is_power_of_two(uint32_t x) {
+    return x && ((x & (x - 1)) == 0);
+}
+
+static inline bool i64_is_power_of_two(int64_t x) {
+    return x > 0 && ((x & (x - 1ULL)) == 0);
+}
+
+static inline bool u64_is_power_of_two(uint64_t x) {
+    return x && ((x & (x - 1ULL)) == 0);
+}
+
+#define is_power_of_two(x) _Generic((x) \
+    , unsigned: u32_is_power_of_two \
+    , int: i32_is_power_of_two \
+    , unsigned long: u32_is_power_of_two \
+    , long: i32_is_power_of_two \
+    , unsigned long long: u64_is_power_of_two \
+    , long long: i64_is_power_of_two \
+    , char: i8_is_power_of_two \
+    , unsigned char: u8_is_power_of_two \
+    , short: i16_is_power_of_two \
+    , unsigned short: u16_is_power_of_two \
+    )(x)
+
+
 #endif // BIT_UTILS_H

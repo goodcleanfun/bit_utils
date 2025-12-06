@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdbool.h>
 #include "greatest/greatest.h"
 
 #include "bit_utils.h"
@@ -63,6 +64,16 @@ TEST test_bit_utils(void) {
     ASSERT_EQ(ceil_div(0ULL, 0ULL), 0ULL);
     ASSERT_EQ(ceil_div(1ULL, 0ULL), 0ULL);
     ASSERT_EQ(ceil_div(0x8000000000000000ULL, 0ULL), 0ULL);
+
+    ASSERT_EQ(is_power_of_two(0), false);
+    ASSERT_EQ(is_power_of_two(1), true);
+    ASSERT_EQ(is_power_of_two(0x80000000), true);
+
+    ASSERT_EQ(is_power_of_two(0ULL), false);
+    ASSERT_EQ(is_power_of_two(1ULL), true);
+    ASSERT_EQ(is_power_of_two(0x8000000000000000ULL), true);
+
+    ASSERT_EQ(is_power_of_two(-2), false);
 
     PASS();
 }
