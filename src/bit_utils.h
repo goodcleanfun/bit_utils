@@ -119,31 +119,39 @@ static inline uint32_t u32_ceil_div(uint32_t x, uint32_t y) {
 }
 
 #define floor_log2(x) _Generic((x) \
-    , uint32_t: u32_floor_log2 \
-    , int32_t: u32_floor_log2 \
-    , uint64_t: u64_floor_log2 \
-    , int64_t: u64_floor_log2 \
+    , unsigned: u32_floor_log2 \
+    , int: u32_floor_log2 \
+    , unsigned long: u32_floor_log2 \
+    , long: u32_floor_log2 \
+    , unsigned long long: u64_floor_log2 \
+    , long long: u64_floor_log2 \
     )(x)
 
 #define ceil_log2(x) _Generic((x) \
-    , uint32_t: u32_ceil_log2 \
-    , int32_t: u32_ceil_log2 \
-    , uint64_t: u64_ceil_log2 \
-    , int64_t: u64_ceil_log2 \
+    , unsigned: u32_ceil_log2 \
+    , int: u32_ceil_log2 \
+    , unsigned long: u32_ceil_log2 \
+    , long: u32_ceil_log2 \
+    , unsigned long long: u64_ceil_log2 \
+    , long long: u64_ceil_log2 \
     )(x)
 
 #define hyper_ceil(x) _Generic((x) \
-    , uint32_t: u32_hyper_ceil \
-    , int32_t: u32_hyper_ceil \
-    , uint64_t: u64_hyper_ceil \
-    , int64_t: u64_hyper_ceil \
+    , unsigned: u32_hyper_ceil \
+    , int: u32_hyper_ceil \
+    , unsigned long: u32_hyper_ceil \
+    , long: u32_hyper_ceil \
+    , unsigned long long: u64_hyper_ceil \
+    , long long: u64_hyper_ceil \
     )(x)
 
 #define ceil_div(x, y) _Generic((x, y) \
-    , uint32_t: u32_ceil_div \
-    , int32_t: u32_ceil_div \
-    , uint64_t: u64_ceil_div \
-    , int64_t: u64_ceil_div \
+    , unsigned: u32_ceil_div \
+    , int: u32_ceil_div \
+    , unsigned long: u32_ceil_div \
+    , long: u32_ceil_div \
+    , unsigned long long: u64_ceil_div \
+    , long long: u64_ceil_div \
     )(x, y)
 
 
@@ -180,14 +188,16 @@ static inline bool u64_is_power_of_two(uint64_t x) {
 }
 
 #define is_power_of_two(x) _Generic((x) \
-    , uint32_t: u32_is_power_of_two \
-    , int32_t: i32_is_power_of_two \
-    , uint64_t: u64_is_power_of_two \
-    , int64_t: i64_is_power_of_two \
-    , int8_t: i8_is_power_of_two \
-    , uint8_t: u8_is_power_of_two \
-    , int16_t: i16_is_power_of_two \
-    , uint16_t: u16_is_power_of_two \
+    , unsigned: u32_is_power_of_two \
+    , int: i32_is_power_of_two \
+    , unsigned long: u32_is_power_of_two \
+    , long: i32_is_power_of_two \
+    , unsigned long long: u64_is_power_of_two \
+    , long long: i64_is_power_of_two \
+    , char: i8_is_power_of_two \
+    , unsigned char: u8_is_power_of_two \
+    , short: i16_is_power_of_two \
+    , unsigned short: u16_is_power_of_two \
     )(x)
 
 #endif // BIT_UTILS_H
