@@ -1,6 +1,6 @@
 {
     "name": "bit_utils",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "repo": "goodcleanfun/bit_utils",
     "description": "Cross platform builtin bit operations (popcount, ctz, clz)",
     "keywords": [],
